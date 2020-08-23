@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Customer</title>
+    </head>
+    <body>
+        <h5 id="msg"><%= msg %></h5>
+        <h5 id="resName"><%= restaurant.name %></h5>
+        <h5 id="foodName"><%= food.name %></h5>
+        <h5 >$: <%= food.price %></h5>
+    <form>
+        <label for="num">Number:</label>
+        <input type="number" id="num" name="num" min="1" max="10">
+        <input type="submit"> 
+    </form>
+
+    <ul>
+        <!--Display Cart here-->
+    </ul>
+
+    <a href="/cusLogin/<%=restaurant.id %>/<%= cname %>">back to menu</a>
+
+    <script>
+        
+        (function () {
+            const form = document.querySelector('form')
+            const displayArea = document.querySelector('ul')
+            const wishList = JSON.parse(localStorage.getItem('wishList')) || []
+
+            function displayWishList() {
+                wishList.forEach(wish => displayWish(wish))
+            }
+
+            function displayWish(input) {
+                displayArea.innerHTML += `
+                <li><span>Cancel</span>${"------"+input}</li>
+                `
+            }
+
+            function updateLocalStorage() {
+                //store the list back to localStorage
+                localStorage.setItem('wishList', JSON.stringify(wishList))
+            }
+
+            //display all the wish on the list from localStorage
+            displayWishList()
+
+            //add event listener to form
+            form.addEventListener('submit', event => {
+                //prevent auto send the form
+                event.preventDefault()
+                //get input value
+                const input = document.querySelector('input[id="num"]')
+                const input_food_name = document.querySelector('h5[id="foodName"]')
+                const input_resName = document.querySelector('h5[id="resName"]')
+                //add new wish to the list
+              
+                let i;
+                for(i=0;i<wishList.length;i++){
+                    if(!wishList[i].includes(String(input_resName.textContent)) || wishList[i].includes(String(input_food_name.textContent))){
+                        return;
+                    }
+                }
+
+                displayWish(input_resName.textContent+"-"+input_food_name.textContent+":"+String(input.value))
+                //add new wish to the list
+                wishList.push(input_resName.textContent+"-"+input_food_name.textContent+":"+String(input.value))
+                //add the wish to localStorage
+                updateLocalStorage(input_food_name.textContent+":"+String(input.value))
+                //clear up the input
+                //input.num = 0
+
+                //redirect
+
+            })
+            
+            displayArea.addEventListener('click', event => {
+                if (event.target.tagName !== 'SPAN') { return }
+                const li = event.target.parentElement
+                li.remove()
+                wishList.splice(wishList.indexOf(li.textContent.slice(0, -1)), 1)
+                updateLocalStorage()
+            })
+            
+        })()
+
+    </script>
+    </body>
+</html>

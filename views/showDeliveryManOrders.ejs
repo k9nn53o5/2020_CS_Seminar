@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width    initial-scale=1">
+        <title>deliveryMan</title>
+    </head>
+    <body>
+        
+        <div id="ordersFromCus">
+            </br>
+            <table class="table table-hover">
+                <h4>Orders:</h4>
+                <tr>
+                    <td>id</td>
+                    <td>order_num </td>
+                    <td>cId</td>
+                    <td>address</td>
+                    <td>pay_price</td>
+                    <td>is_pay</td>
+                    <td>pay_time</td>
+                    <td>is_ship</td>
+                    <td>ship_time</td>
+                    <td>is_receipt</td>
+                    <td>receipt_time</td>
+                    <td>ship_number</td>
+                    <td>status</td>
+                    <td>create_time</td>
+                    <td>update_time</td>
+                    <td>ship_man_id</td>
+                    <td>action</td> 
+                    
+                    </tr>
+                    <% for(var i = 0; i < orders.length; i++) {%>
+                    <tr>
+                        <td><a href="/deliveryManLogin/delivGoSeeCussOrder/<%= orders[i].id %>/<%= delivId %>">  <%= orders[i].id %> </a></td>
+                        <td><%= orders[i].order_num %> </td>
+                        <td><%= orders[i].cId %></td>
+                        <td><%= address[i] %></td>
+                        <td><%= orders[i].pay_price %></td>
+                        <td><%= orders[i].is_pay %></td>
+                        <td><%= orders[i].pay_time %></td>
+                        <td><%= orders[i].is_ship %></td>
+                        <td><%= orders[i].ship_time %></td>
+                        <td><%= orders[i].is_receipt %></td>
+                        <td><%= orders[i].receipt_time %></td>
+                        <td><%= orders[i].ship_number %></td>
+                        <td><%= orders[i].status %></td>
+                        <td><%= orders[i].create_time %></td>
+                        <td><%= orders[i].update_time %></td>
+                        <td><%= orders[i].ship_man_id %></td>
+
+                        <% theAction=''; %>
+                        <% if(orders[i].status == 'FoodWasCooked'){ %>
+                        <% theAction = 'delivery this order ' %>
+                        <% } %>
+                        <% if(orders[i].status == 'Delivering'){ %>
+                        <% theAction = 'customer get the foods' %>
+                        <% } %>
+                        
+                        <td><a href="/deliveryManLogin/delivGoSeeCussOrder/<%= orders[i].id %>/doAction/<%= orders[i].status %>/<%= delivId %>"><%= theAction %></a></td>
+                    </tr>
+                    <% } %>
+            </table> 
+        </div>
+    
+    </body>
+</html>

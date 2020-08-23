@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Restaurant</title>
+    </head>
+    <body>
+        <h5><%= msg %></h5>
+        <h4>Order_goods:</h4>
+        <table class="table table-hover">      
+                <tr>
+                    <td>id</td>
+                    <td>orderId </td>
+                    <td>dishId</td>
+                    <td>number</td>
+                    <td>status</td>
+                    <td>create_time</td>
+                    <td>update_time</td>
+                    
+                    </tr>
+                    <% for(var i = 0; i < order_goods.length; i++) {%>
+                    <tr>
+                        <td><%= order_goods[i].id %> </td>
+                        <td><%= order_goods[i].orderId %> </td>
+                        <td><%= order_goods[i].dishId %></td>
+                        <td><%= order_goods[i].number %></td>
+                        <td><%= order_goods[i].status %></td>
+                        <td><%= order_goods[i].create_time %></td>
+                        <td><%= order_goods[i].update_time %></td>
+                        
+                    </tr>
+                    <% } %>
+        </table>
+
+    </br>
+    </br>
+    </br>
+    <a href="/resLogin/<%= rid %>/resGoSeeCussOrder">back to menu</a>
+    </body>
+</html>

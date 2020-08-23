@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <title>Restaurant</title>
+    </head>
+    <body>
+        <h1>Hello <%=resName%> </h1>
+        <h1><%=msg%></h1>
+        <form method="post" action="/resLogin/goCURDMenu/<%= backURL1 %>/<%= backURL2 %>">
+            <div class="form-group">
+                <div>
+                    <label for="dishName">dishName</label> <input id="dishName" type="text" name="dishName" class="form-group" />
+                </div>
+                
+                <div>
+                    <label for="price">price</label> <input id="price" type="text" name="price" class="form-group" />
+                </div>
+            </div>
+            <input type="submit" value="enter" class="btn btn-primary">
+        </form>
+    </body>
+</html>
