@@ -36,7 +36,7 @@ router.get('/',function(req,res){
                         return;
                     }
 
-                    res.render('showCusResMenu-v2',{
+                    res.render('showCusResMenu',{
                         URL1: req.params.cname,
                         cId: cId,
                         restaurant: restaurant,
