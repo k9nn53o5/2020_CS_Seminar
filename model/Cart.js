@@ -63,7 +63,6 @@ CartDao.prototype.cleanGoodsByCid = function(cId,callback){
         .query(sqlCode,[ [cId] ],function(err){
             if(err)
                 throw err;
-            //console.log("cleanGoodsByCid");
             callback("Delete successfully");
         });
 }
@@ -75,7 +74,6 @@ CartDao.prototype.cleanAllGoodsByStatus = function(status,callback){
         .query(sqlCode,[[status]],function(err){
             if(err)
                 throw err;
-            //console.log("cleanGoodsByStatus");
             callback("Delete successfully");
         });
 }
@@ -87,7 +85,6 @@ CartDao.prototype.CustomerRemoveAGoodFromCart = function(cId,status,dishId,callb
         .query(sqlCode,[[status],[cId],[dishId]],function(err){
             if(err)
                 throw err;
-            //console.log("cleanGoodsByStatus");
             callback("Delete successfully");
         });
 }
@@ -99,26 +96,25 @@ CartDao.prototype.cleanCustomerCartWhereFoodArrive = function(cId,status,callbac
         .query(sqlCode,[[status],[cId]],function(err){
             if(err)
                 throw err;
-            //console.log("cleanGoodsByStatus");
             callback("Delete successfully");
         });
 }
 
 CartDao.prototype.findByCId = function(cId,callback){
-var sqlCode = 'SELECT dishId, num, status, create_time, update_time\
-                   FROM cart\
-                   WHERE cId = ? ';
-    MySQL
-        .query(sqlCode,[cId],function(err,rows){
-            if(err)
-                    throw err;
-            var results = [];
-            rows.forEach(function(element) {
-                results.push(new Cart(-1,-1,element.dishId,element.num,
-                        element.status,element.create_time,element.update_time));
+    var sqlCode = 'SELECT dishId, num, status, create_time, update_time\
+                    FROM cart\
+                    WHERE cId = ? ';
+        MySQL
+            .query(sqlCode,[cId],function(err,rows){
+                if(err)
+                        throw err;
+                var results = [];
+                rows.forEach(function(element) {
+                    results.push(new Cart(-1,cId,element.dishId,element.num,
+                            element.status,element.create_time,element.update_time));
+                });
+                callback(results);
             });
-            callback(results);
-        });
 }
 
 CartDao.prototype.findByRid = function(rId,callback){

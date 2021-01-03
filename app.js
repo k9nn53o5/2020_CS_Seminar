@@ -27,6 +27,11 @@ global.MySQL = mysql.createConnection({
 	user : 'root',
 	password : 'k9nn53o5', 
 	database : 'dbtest2020_4_2'
+
+// 	host : '104.199.229.23',
+// 	user : 'root',
+// 	password : 'k9nn53o5', 
+// 	database : 'dbtest2020_4_2'
 });
 
 app.use('/', require('./routes/index'));
